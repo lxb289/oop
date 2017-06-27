@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id='btn'>btn</button>
+
+	<script>
+		//函数只有在被调用时才能确定上下文是谁,没被调用的函数不知道上下文
+		var a=2;
+		function fun(){
+			var a=10;
+			alert(this.a);
+		}
+		//①直接圆括号调用,this指window对象
+		// fun();//2
+		
+		//②通过对象.调用==>this指.前的obj对象
+		var obj={
+			a:5,
+			fun:fun
+		}
+		// obj.fun();//5
+		//但是这个时候是通过f直接调用this==>window
+		var f=obj.fun;
+		// f();//2
+		//③通过事件绑定调用 this==>btn对象
+		btn.onclick=fun;//undefined   --如果btn.a=100;则弹出100
+
+		//④通过数组调用函数 this==>数组
+		function fun0(a,b,c,d,e){
+			alert(this.length);
+		}
+		var length=10;
+		var arr=[fun0,21,65,125];
+		// arr[0]();//4
+
+		//⑤通过定时器调用函数 this==>window
+		// setTimeout(fun,100);
+
+		//⑥通过new运算符调用一个函数  通过new调用函数时,构造函数首先创建一个空对象,然后指定函数上下文为这个空对象,在执行函数,最后返回空对象 this==>obj
+		function fun1(){
+			this.a=10;
+		}
+		obj.a=1;
+		var obj=new fun1();
+		alert(obj.a);//10
+	</script>
+</body>
+</html>

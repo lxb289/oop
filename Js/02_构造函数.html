@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+
+	<script>
+	//构造函数和普通函数并没有什么区别,当一个函数被new调用时,那么他就是一个构造函数
+	function People(name,age,sex){
+		this.name=name;
+		this.age=age||20;
+		this.sex=sex;
+	}
+	var age=15;
+	People();//this==>window
+	alert(window.age);//20
+
+	var xiaohong=new People('xiaohong',18,'女');
+	alert(xiaohong.name);//xiaohong this==>obj
+	</script>
+</body>
+</html>
