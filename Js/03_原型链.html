@@ -8,7 +8,7 @@
 	
 	<script>
 	//所有的构造函数都有一个prototype的属性指向一个空对象
-	//而构造函数数理化的对象有一个__proto__的属性也指向这个对象
+	//而构造函数实例化的对象有一个__proto__的属性也指向这个对象
 	function People(name,age,sex){
 		this.name=name;
 		this.age=age;
@@ -16,7 +16,7 @@
 	}
 	var xiaohong=new People('xiaohong',18,'女');
 	alert(People.prototype===xiaohong.__proto__);//true
-	People.sayHello=function(){
+	People.prototype.sayHello=function(){
 		alert('Hello '+this.name);
 	};
 	xiaohong.sayHello();
